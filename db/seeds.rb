@@ -11,21 +11,25 @@ require 'json'
 
 puts 'Cleaning up database...'
 Movie.destroy_all
+List.destroy_all
+Bookmark.destroy_all
 puts 'Database cleaned'
 
 url = 'http://tmdb.lewagon.com/movie/top_rated'
-10.times do |i|
-  puts "Importing movies from page #{i + 1}"
-  movies = JSON.parse(URI.open("#{url}?page=#{i + 1}").read)['results']
-  movies.each do |movie|
-    puts "Creating #{movie['title']}"
-    base_poster_url = 'https://image.tmdb.org/t/p/original'
-    Movie.create(
-      title: movie['title'],
-      overview: movie['overview'],
-      poster_url: "#{base_poster_url}#{movie['backdrop_path']}",
-      rating: movie['vote_average']
-    )
-  end
+response =JSON.parse(URI.open(url).read)
+
+puts "New movies via API..."
+
+response['results'].each do |movie_hash|
+  puts
+  p movie_hash
+  Movie.create!(
+    title: movie_hash['title'],
+    overview: movie_hash['overview'],
+    poster_url: movie_hash['poster_path'],
+    rating: movie_hash['vote_average']
+  )
+
 end
-puts 'Movies created'
+
+puts "New database created!"
