@@ -31,6 +31,7 @@ gem "font-awesome-sass", "~> 5.15"
 gem "simple_form", github: "heartcombo/simple_form"
 gem 'mini_magick', '~> 4.5', '>= 4.5.1'
 gem 'mini_racer'
+gem 'stimulus-rails'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
