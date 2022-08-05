@@ -9,8 +9,7 @@ gem 'rails', '~> 6.1.5', '>= 6.1.5.1'
 
 
 # gem 'pg', '~> 1.1'
-
-gem 'pg'
+gem 'pg', '~> 1.4', '>= 1.4.2'
 
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
